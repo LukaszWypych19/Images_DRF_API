@@ -2,4 +2,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the images index.")
+    return HttpResponse("Hello, you're at the images_api index")
