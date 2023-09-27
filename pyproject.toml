@@ -1,9 +1,10 @@
 [tool.poetry]
-name = "images"
+name = "images-api"
 version = "0.1.0"
 description = ""
 authors = ["Luk <lukasz.wypych19@gmail.com>"]
 readme = "README.md"
+packages = [{include = "images_api"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
