@@ -122,20 +122,20 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-#
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.AllowAny',
-#     ],
-#     'DEFAULT_PARSER_CLASSES': [
-#         'rest_framework.parsers.JSONParser',
-#         'rest_framework.parsers.MultiPartParser',
-#     ],
-# }
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# # Specify the directory where uploaded files will be stored
-# MEDIA_ROOT = 'media/'
-#
-# # Specify the URL prefix for serving uploaded files
-# MEDIA_URL = '/media/'
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.MultiPartParser',
+    ],
+}
+
+# Specify the directory where uploaded files will be stored
+MEDIA_ROOT = 'media/'
+
+# Specify the URL prefix for serving uploaded files
+MEDIA_URL = '/media/'
