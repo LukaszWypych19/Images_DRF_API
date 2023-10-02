@@ -5,6 +5,9 @@ from .serializers import ImageSerializer, AccountTierSerializer
 from django.shortcuts import render
 from django.http import JsonResponse
 from PIL import Image as PILImage
+from utils import generate_links
+from datetime import datetime, timedelta
+from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
 
 class ImageViewSet(viewsets.ModelViewSet):
@@ -50,3 +53,26 @@ def generate_thumbnail(image):
     img.save(thumbnail_path)
 
     return thumbnail_path
+
+
+def generate_links_view(request):
+    # Get the currently logged-in user
+    user = request.user
+
+    # Get the image URL from the request or any other source
+    image_url = request.GET.get('image_url')
+
+    # Generate the links based on the user's account tier
+    links = generate_links(user, image_url)
+
+    # Pass the links to the template or return them in the response
+    return render(request, 'generate_links.html', {'links': links})
+
+
+def generate_expiring_link(image_url, expiration_time):
+    parsed_url = urlparse(image_url)
+    query_params = parse_qs(parsed_url.query)
+    query_params['expires'] = [(datetime.now() + timedelta(seconds=expiration_time)).isoformat()]
+    updated_query_string = urlencode(query_params, doseq=True)
+    updated_url = urlunparse(parsed_url._replace(query=updated_query_string))
+    return updated_url
